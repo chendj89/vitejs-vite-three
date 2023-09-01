@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { getRandomColor } from './utils';
 const canvas = ref(null);
 import * as THREE from 'three';
 const scene = new THREE.Scene();
@@ -19,11 +20,18 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true,
 });
 renderer.setSize(width, height);
+let count = 1;
+
 function animate() {
   requestAnimationFrame(animate);
   renderer.clear();
-  mesh.rotation.y += 0.002;
+  mesh.rotation.y += 0.02;
   renderer.render(scene, camera);
+  count++;
+  if (count >= 100) {
+    count = 0;
+    material.color = new THREE.Color(getRandomColor());
+  }
 }
 window.onresize = function () {
   renderer.setSize(window.innerWidth, window.innerHeight);
