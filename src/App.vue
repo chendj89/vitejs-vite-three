@@ -25,7 +25,7 @@ let count = 1;
 function animate() {
   requestAnimationFrame(animate);
   renderer.clear();
-  mesh.rotation.y += 0.02;
+  mesh.rotation.y += 0.03;
   renderer.render(scene, camera);
   count++;
   if (count >= 100) {
